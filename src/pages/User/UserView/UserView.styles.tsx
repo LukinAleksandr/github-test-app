@@ -66,3 +66,17 @@ export const UserStyledPanel = styled.div`
   justify-content: space-between;
   margin-bottom: 30px;
 `;
+
+export const UserStyledReposList = styled.ul<{ loading: boolean }>`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    width: ${({ loading }) => (loading ? "100%" : "0")};
+    height: ${({ loading }) => (loading ? "100%" : "0")};
+    background-color: #ffffff80;
+  }
+`;

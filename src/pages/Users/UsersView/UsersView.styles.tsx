@@ -37,5 +37,13 @@ export const WrapperTop = styled.div`
 export const UsersList = styled.ul<{ loading: boolean }>`
   display: flex;
   flex-wrap: wrap;
+  position: relative;
   gap: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    width: ${({ loading }) => (loading ? "100%" : "0")};
+    height: ${({ loading }) => (loading ? "100%" : "0")};
+    background-color: #ffffff80;
+  }
 `;

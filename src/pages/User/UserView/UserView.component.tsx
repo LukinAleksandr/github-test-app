@@ -12,6 +12,7 @@ import {
   UserStyledHeader,
   UserStyledPanel,
   UserStyledSearch,
+  UserStyledReposList,
 } from "./UserView.styles";
 import { UserPageProps } from "../User.types";
 import { format } from "date-fns";
@@ -78,7 +79,9 @@ export const UserView = ({
           placeholder="Search"
         />
       </UserStyledPanel>
-      {repos && repos.items.map((rep) => <ReposItem key={rep.id} {...rep} />)}
+      <UserStyledReposList loading={loading}>
+        {repos && repos.items.map((rep) => <ReposItem key={rep.id} {...rep} />)}
+      </UserStyledReposList>
     </UserStyled>
   );
 };

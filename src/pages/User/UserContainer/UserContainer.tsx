@@ -12,7 +12,11 @@ export const UserContainer = () => {
   const debouncedCallback = useDebounce(params, 1000);
   const { data: user } = useGetUserByIdQuery(id);
 
-  const { data: repos } = useGetUserReposQuery(debouncedCallback, {
+  const {
+    data: repos,
+    isFetching,
+    isLoading,
+  } = useGetUserReposQuery(debouncedCallback, {
     skip: user === undefined,
   });
 
@@ -22,9 +26,14 @@ export const UserContainer = () => {
     const params: IParams = {};
     if (ev.target.value?.length) params.q = ev.target.value;
 
-    setSearchParams({
-      q: ev.target.value,
-    });
+    setSearchParams(
+      {
+        q: ev.target.value,
+      },
+      {
+        replace: true,
+      }
+    );
   };
 
   useEffect(() => {
@@ -43,7 +52,7 @@ export const UserContainer = () => {
       user={user}
       searchHandle={searchHandle}
       defaultSearchValue={search ? search : ""}
-      loading={false}
+      loading={isFetching || isLoading}
     />
   );
 };

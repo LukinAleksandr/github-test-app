@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { UsersView } from "../UsersView";
 import { useGetUsersQuery } from "../../../redux";
-import { IParams, ISearchParamsUpdate } from "./UserContainer.types";
+import { IParams } from "./UserContainer.types";
 import useDebounce from "../../../hooks/useDebounce.hook";
 
 export const UsersContainer = () => {
@@ -21,9 +21,14 @@ export const UsersContainer = () => {
     const params: IParams = {};
     if (ev.target.value?.length) params.q = ev.target.value;
 
-    setSearchParams({
-      q: ev.target.value,
-    });
+    setSearchParams(
+      {
+        q: ev.target.value,
+      },
+      {
+        replace: true,
+      }
+    );
   };
 
   useEffect(() => {

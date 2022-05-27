@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { IParams } from "../pages/Users/UsersContainer/UserContainer.types";
 
-function useDebounce(value: IParams, delay: number): IParams {
+function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {
